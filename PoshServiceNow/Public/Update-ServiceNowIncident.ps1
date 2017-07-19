@@ -8,15 +8,39 @@
         [parameter(ParameterSetName='SetGlobalAuth', mandatory=$true)]       
         [string]$SysId,
 
-        # Hashtable of values to use as the record's properties        
-        [parameter(mandatory=$true)]        
+        # Hashtable of values to use as the record's properties
+        [Parameter(ParameterSetName="HashValues", Mandatory=$true)]
         [hashtable]$Values,
+        
+        # Category
+        [Parameter(ParameterSetName="NamedValues")]
+        [string]$Category,
+
+        # ConfigurationItem
+        [Parameter(ParameterSetName="NamedValues")]
+        [string]$ConfigurationItem,
+
+        # AssignmentGroup
+        [Parameter(ParameterSetName="NamedValues")]
+        [string]$AssignmentGroup,
+
+        # AssignedTo
+        [Parameter(ParameterSetName="NamedValues")]
+        [string]$AssignedTo,
+
+        # WorkNotes
+        [Parameter(ParameterSetName="NamedValues")]
+        [string]$WorkNotes,
+
+        # Comments
+        [Parameter(ParameterSetName="NamedValues")]
+        [string]$Comments,
 
         # Credential used to authenticate to ServiceNow  
         [Parameter(ParameterSetName='SpecifyConnectionFields', Mandatory=$True)]
         [ValidateNotNullOrEmpty()]
         [PSCredential]
-        $ServiceNowCredential, 
+        $ServiceNowCredential,
 
         # The URL for the ServiceNow instance being used (eg: instancename.service-now.com)
         [Parameter(ParameterSetName='SpecifyConnectionFields', Mandatory=$True)]
@@ -29,7 +53,19 @@
         [ValidateNotNullOrEmpty()]
         [Hashtable]
         $Connection
-    )                      
+    )
+    
+    if (-not($Values))
+    {
+        $Values = @{}        
+    }
+
+    if ($Category) { $Values.Add('category',$Category) }
+    if ($ConfigurationItem) { $Values.Add('cmdb_ci',$ConfigurationItem) }
+    if ($AssignmentGroup) { $Values.Add('assignment_group',$AssignmentGroup) }
+    if ($AssignedTo) { $Values.Add('assigned_to',$AssignedTo) }
+    if ($WorkNotes) { $Values.Add('work_notes',$WorkNotes) }
+    if ($Comments) { $Values.Add('comments',$Comments) }
 
     if ($Connection -ne $null)
     {
