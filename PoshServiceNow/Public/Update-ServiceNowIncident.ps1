@@ -53,12 +53,72 @@
         $Values = @{}        
     }
 
-    if ($Category) { $Values.Add('category',$Category) }
-    if ($ConfigurationItem) { $Values.Add('cmdb_ci',$ConfigurationItem) }
-    if ($AssignmentGroup) { $Values.Add('assignment_group',$AssignmentGroup) }
-    if ($AssignedTo) { $Values.Add('assigned_to',$AssignedTo) }
-    if ($WorkNotes) { $Values.Add('work_notes',$WorkNotes) }
-    if ($Comments) { $Values.Add('comments',$Comments) }
+    if ($Category)
+    {
+        if ($Values.ContainsKey('category'))
+        {
+            $Values['category'] = $Category
+        }
+        else
+        {
+            $Values.Add('category',$Category)
+        }
+    }
+    if ($ConfigurationItem)
+    {
+        if ($Values.ContainsKey('cmdb_ci'))
+        {
+            $Values['cmdb_ci'] = $ConfigurationItem
+        }
+        else
+        {
+            $Values.Add('cmdb_ci',$ConfigurationItem)
+        }
+    }
+    if ($AssignmentGroup)
+    {
+        if ($Values.ContainsKey('assignment_group'))
+        {
+            $Values['assignment_group'] = $AssignmentGroup
+        }
+        else
+        {
+            $Values.Add('assignment_group',$AssignmentGroup)
+        }
+    }
+    if ($AssignedTo)
+    {
+        if ($Values.ContainsKey('assigned_to'))
+        {
+            $Values['assigned_to'] = $AssignedTo
+        }
+        else
+        {
+            $Values.Add('assigned_to',$AssignedTo)
+        }
+    }
+    if ($WorkNotes)
+    {
+        if ($Values.ContainsKey('work_notes'))
+        {
+            $Values['work_notes'] = $WorkNotes
+        }
+        else
+        {
+            $Values.Add('work_notes',$WorkNotes)
+        }
+    }
+    if ($Comments)
+    {
+        if ($Values.ContainsKey('comments'))
+        {
+            $Values['comments'] = $Comments
+        }
+        else
+        {
+            $Values.Add('comments',$Comments)
+        }
+    }
 
     if ($Connection -ne $null)
     {
