@@ -9,31 +9,24 @@
         [string]$SysId,
 
         # Hashtable of values to use as the record's properties
-        [Parameter(ParameterSetName="HashValues", Mandatory=$true)]
         [hashtable]$Values,
         
         # Category
-        [Parameter(ParameterSetName="NamedValues")]
         [string]$Category,
 
         # ConfigurationItem
-        [Parameter(ParameterSetName="NamedValues")]
         [string]$ConfigurationItem,
 
         # AssignmentGroup
-        [Parameter(ParameterSetName="NamedValues")]
         [string]$AssignmentGroup,
 
         # AssignedTo
-        [Parameter(ParameterSetName="NamedValues")]
         [string]$AssignedTo,
 
         # WorkNotes
-        [Parameter(ParameterSetName="NamedValues")]
         [string]$WorkNotes,
 
         # Comments
-        [Parameter(ParameterSetName="NamedValues")]
         [string]$Comments,
 
         # Credential used to authenticate to ServiceNow  
